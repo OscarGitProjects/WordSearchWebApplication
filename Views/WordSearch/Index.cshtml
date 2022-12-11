@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    @{
+        await Html.RenderPartialAsync("_MessageView");
+    }
+
+    <form asp-controller="WordSearch" asp-action="Search">
+        <div>
+            <label for="txtSearchWords" class="form-label">Type in words you want to search for</label>
+            <input id="txtSearchWords" name="txtSearchWords" placeholder="Words separated with a space" class="form-control" />
+            @if (ViewBag.Error_txtSearchWords != null)
+            {
+                <span class="text-danger">@ViewBag.Error_txtSearchWords</span>
+            }
+        </div>
+
+        <div>
+            <label for="txtUrl" class="form-label">Url</label>
+            <input id="txtUrl" name="txtUrl" placeholder="Url" class="form-control" />
+            @if (ViewBag.Error_txtUrl != null)
+            {
+                <span class="text-danger">@ViewBag.Error_txtUrl</span>
+            }
+        </div>
+
+        <div>
+            <button class="btn btn-secondary" type="submit">Search</button>
+        </div>    
+    </form>
+
+</div>

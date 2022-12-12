@@ -85,14 +85,14 @@ namespace WordSearchWebApplication.Services
                 foreach (var childNode in htmlDoc.DocumentNode.ChildNodes)
                     strBuilder.Append($"{childNode.InnerText.Trim()} ");
 
-                // Convert text to a array of words
-                var arrListWords = WordSearchHelper.GetSearchWords(strBuilder.ToString());
+                // Convert text to a list of words
+                var listOfWords = WordSearchHelper.GetSearchWords(strBuilder.ToString());
                 WordSearchResult? wordSearchResult = null;
 
-                if (arrListWords != null && arrListWords.Count > 0)
+                if (listOfWords != null && listOfWords.Count > 0)
                 {
                     // Now we calculate how many times a word is found in the webpage
-                    lsWordSearchResults = new List<WordSearchResult>(arrListWords.Count);
+                    lsWordSearchResults = new List<WordSearchResult>(lsWords.Count);
                     foreach (var word in lsWords)
                     {
                         wordSearchResult = new WordSearchResult();
@@ -102,7 +102,7 @@ namespace WordSearchWebApplication.Services
                         wordSearchResult.TotalTime = loadTimeStopWatch.ElapsedMilliseconds;
                         wordSearchResult.TimeForTest = DateTime.Now;
                         wordSearchResult.Keyword = word;
-                        wordSearchResult.NumberOfHits = arrListWords.Where(w => w.Equals(word, StringComparison.OrdinalIgnoreCase)).Count();
+                        wordSearchResult.NumberOfHits = listOfWords.Where(w => w.Equals(word, StringComparison.OrdinalIgnoreCase)).Count();
                         lsWordSearchResults.Add(wordSearchResult);
                     }
                 }

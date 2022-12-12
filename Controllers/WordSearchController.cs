@@ -27,13 +27,13 @@ namespace WordSearchWebApplication.Controllers
         public async Task<ActionResult> Search(string txtSearchWords, string txtUrl)
         {
             int iNumberOfError = 0;
-            if (txtSearchWords == null || txtSearchWords.Length <= 0)
+            if (String.IsNullOrEmpty(txtSearchWords) || txtSearchWords.Length <= 0)
             {
                 ViewBag.Error_txtSearchWords = "You must enter at least one word";
                 iNumberOfError++;
             }
 
-            if (txtUrl == null || txtUrl.Length <= 0)
+            if (String.IsNullOrEmpty(txtUrl) || txtUrl.Length <= 0)
             {
                 ViewBag.Error_txtUrl = "You must enter a url";
                 iNumberOfError++;
